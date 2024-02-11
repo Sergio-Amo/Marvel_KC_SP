@@ -15,21 +15,21 @@ data class Data (
     val limit: Int,  //TO
     val total: Int,  //TOTAL
     val count: Int,  //RETURNED
-    val results: List<MarvelCharacter>
+    val results: List<MarvelCharacter> // ListOfCharacters
 )
 
 data class MarvelCharacter (
     val id: Int,
     val name: String,
     val description: String,
-    val modified: String,
+    val modified: String,  // TODO: remove?
     val thumbnail: Thumbnail,
-    val resourceURI: String,
+    val resourceURI: String,  // TODO: remove?
     val comics: Comics,  // TODO: Decouple this
     val series: Comics,  // TODO: Decouple this
     val stories: Stories,
     val events: Comics, // TODO: Decouple this
-    val urls: List<URL>
+    val urls: List<URL> // TODO: remove?
 )
 
 data class Comics (
@@ -69,6 +69,7 @@ data class URL (
     val url: String
 )
 
+// TODO: consider what to do with this
 enum class URLType {
     Comiclink,
     Detail,
