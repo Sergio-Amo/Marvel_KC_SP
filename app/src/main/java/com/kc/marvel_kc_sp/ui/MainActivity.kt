@@ -28,7 +28,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android", listViewModel)
+                    MainScreen(viewModel = listViewModel)
                 }
             }
         }
@@ -36,10 +36,10 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, listVM: ListViewModel ,modifier: Modifier = Modifier) {
+fun MainScreen(viewModel: ListViewModel) {
     Text(
-        text = "Hello $name!",
-        modifier = modifier
+        text = "Hello!"
     )
+    viewModel.getCharacters()
 }
 
