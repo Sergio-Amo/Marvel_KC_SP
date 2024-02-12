@@ -1,14 +1,5 @@
 package com.kc.marvel_kc_sp.data.network.model
 
-import com.kc.marvel_kc_sp.domain.model.Comics
-import com.kc.marvel_kc_sp.domain.model.ComicsItem
-import com.kc.marvel_kc_sp.domain.model.Data
-import com.kc.marvel_kc_sp.domain.model.MarvelCharacter
-import com.kc.marvel_kc_sp.domain.model.Stories
-import com.kc.marvel_kc_sp.domain.model.StoriesItem
-import com.kc.marvel_kc_sp.domain.model.Thumbnail
-import com.kc.marvel_kc_sp.domain.model.URL
-import com.kc.marvel_kc_sp.domain.model.URLType
 import com.squareup.moshi.Json
 
 
