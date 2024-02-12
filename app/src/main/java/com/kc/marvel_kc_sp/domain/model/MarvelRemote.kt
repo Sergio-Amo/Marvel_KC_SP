@@ -3,8 +3,8 @@ package com.kc.marvel_kc_sp.domain.model
 import com.squareup.moshi.Json
 
 
-// TODO: Decide which data to save, maybe just MarvelCharacterLocal and ignore all the rest?
-data class MarvelLocal (
+// TODO: Decide which data to save, maybe just MarvelCharacterRemote and ignore all the rest?
+data class MarvelRemote (
     @Json(name= "code") val code: Int, // K
     @Json(name= "status") val status: String, //F
     @Json(name= "copyright") val copyright: String, //F
@@ -14,7 +14,7 @@ data class MarvelLocal (
     @Json(name= "data") val data: Data //K
 )
 
-data class DataLocal (
+data class DataRemote (
     @Json(name= "offset") val offset: Int, //FROM
     @Json(name= "limit") val limit: Int,  //TO
     @Json(name= "total") val total: Int,  //TOTAL
@@ -22,7 +22,7 @@ data class DataLocal (
     @Json(name= "results") val results: List<MarvelCharacter>
 )
 
-data class MarvelCharacterLocal (
+data class MarvelCharacterRemote (
     @Json(name= "id") val id: Int,
     @Json(name= "name") val name: String,
     @Json(name= "description") val description: String,
@@ -36,26 +36,26 @@ data class MarvelCharacterLocal (
     @Json(name= "urls") val urls: List<URL>
 )
 
-data class ComicsLocal (
+data class ComicsRemote (
     @Json(name= "available") val available: Int,
     @Json(name= "collectionURI") val collectionURI: String,
     @Json(name= "items") val items: List<ComicsItem>,
     @Json(name= "returned") val returned: Int
 )
 
-data class ComicsItemLocal (
+data class ComicsItemRemote (
     @Json(name= "resourceURI") val resourceURI: String,
     @Json(name= "name") val name: String
 )
 
-data class StoriesLocal (
+data class StoriesRemote (
     @Json(name= "available") val available: Int,
     @Json(name= "collectionURI") val collectionURI: String,
     @Json(name= "items") val items: List<StoriesItem>,
     @Json(name= "returned") val returned: Int
 )
 
-data class StoriesItemLocal (
+data class StoriesItemRemote (
     @Json(name= "resourceURI") val resourceURI: String,
     @Json(name= "name") val name: String,
     @Json(name= "type") val type: String
@@ -63,18 +63,18 @@ data class StoriesItemLocal (
 
 // I'm using a string INSTEAD of an enum for the extension cause as long as android supports it
 // It will work even if the api starts returning webp, avif, heic or other formats...
-data class ThumbnailLocal (
+data class ThumbnailRemote (
     @Json(name= "path") val path: String,
     @Json(name= "extension") val extension: String,
 )
 
-data class URLLocal (
+data class URLRemote (
     @Json(name= "type") val type: URLType,
     @Json(name= "url") val url: String
 )
 
 // TODO: consider what to do with this
-enum class URLTypeLocal {
+enum class URLTypeRemote {
     Comiclink,
     Detail,
     Wiki
