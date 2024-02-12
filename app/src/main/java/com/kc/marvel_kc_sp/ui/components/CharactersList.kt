@@ -10,10 +10,10 @@ import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -23,7 +23,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -44,18 +46,18 @@ import kotlin.math.min
 @Composable
 fun CharacterList(characters: List<ListCharacterUI>, modifier: Modifier = Modifier) {
     LazyColumn(
+        verticalArrangement = Arrangement.spacedBy(14.dp),
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp)
     ) {
-        //items(characters) {
-        items(generateCharacters(12)) {
+        items(characters) {
             CharacterListItem(character = it)
         }
     }
 }
 
-@Preview(showSystemUi = true, showBackground = true, backgroundColor = 8997920)
+@Preview(showSystemUi = true, showBackground = true/*, backgroundColor = 8997920*/)
 @Composable
 private fun CharacterList_Preview() {
     CharacterList(generateCharacters(10))
@@ -63,7 +65,12 @@ private fun CharacterList_Preview() {
 
 @Composable
 fun CharacterListItem(character: ListCharacterUI, modifier: Modifier = Modifier) {
-    Card {
+    Card(
+        shape = CutCornerShape(12,0,12,0),
+        elevation = CardDefaults.cardElevation(6.dp),
+        modifier = Modifier
+            .border(width = 4.dp, color = Color.Red, CutCornerShape(12,0,12,0))
+    ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -71,8 +78,11 @@ fun CharacterListItem(character: ListCharacterUI, modifier: Modifier = Modifier)
         ) {
 
             AnimatedImage(image = character.thumbnail)
-            Spacer(modifier = Modifier.height(4.dp))
-            Text(text = character.name, style = MaterialTheme.typography.headlineMedium)
+            Text(
+                text = character.name,
+                style = MaterialTheme.typography.headlineMedium,
+                modifier = Modifier.padding(12.dp)
+            )
 
         }
     }
@@ -112,20 +122,6 @@ private fun LoadingAnimation_Preview() {
     LoadingAnimation()
 }
 
-fun generateCharacters(size: Int) = (0 until size).map {
-    ListCharacterUI(
-        it,
-        "Name $it",
-        "Description $it",
-        "https://i.annihil.us/u/prod/marvel/i/mg/f/80/4ce5a6d8b8f2a/landscape_incredible.jpg",
-//        "https://i.annihil.us/u/prod/marvel/i/mg/1/60/52695277ee088/landscape_incredible.jpg",
-        //"https://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available/landscape_incredible.jpg",
-        it % 3 == 0,
-        it,
-    )
-}
-
-
 @Composable
 fun AnimatedImage(image: String, modifier: Modifier = Modifier) {
     val painter = rememberAsyncImagePainter(image)
@@ -158,4 +154,17 @@ fun AnimatedImage(image: String, modifier: Modifier = Modifier) {
                 .alpha(min(1f, transition / .2f))
         )
     }
+}
+
+fun generateCharacters(size: Int) = (0 until size).map {
+    ListCharacterUI(
+        it,
+        "A very long name for a character xxxxxxxllxxxx $it",
+        "Description $it",
+        "https://i.annihil.us/u/prod/marvel/i/mg/f/80/4ce5a6d8b8f2a/landscape_incredible.jpg",
+//        "https://i.annihil.us/u/prod/marvel/i/mg/1/60/52695277ee088/landscape_incredible.jpg",
+        //"https://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available/landscape_incredible.jpg",
+        it % 3 == 0,
+        it,
+    )
 }
