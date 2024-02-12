@@ -7,8 +7,8 @@ import javax.inject.Inject
 class RepositoryImpl @Inject constructor(
     // private val localDataSource: LocalDataSourceInterface,
     private val networkDataSource: NetworkDataSourceInterface,
-) {
-    suspend fun getCharacters() {
+) : RepositoryInterface {
+    override suspend fun getCharacters() {
         val nwCharacters = networkDataSource.getCharacters()
         nwCharacters.results.forEach {
             Log.d("CHARS", it.name)
