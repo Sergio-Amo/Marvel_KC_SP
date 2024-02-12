@@ -78,14 +78,6 @@ data class ThumbnailRemote (
 )
 
 data class URLRemote (
-    @Json(name= "type") val type: URLTypeRemote,
+    @Json(name= "type") val type: String,
     @Json(name= "url") val url: String
 )
-
-// TODO: consider what to do with this
-enum class URLTypeRemote {
-    Comiclink,
-    Detail,
-    Wiki
-}
-
