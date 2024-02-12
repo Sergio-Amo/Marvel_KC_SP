@@ -13,7 +13,7 @@ interface MarvelApi {
         private const val heroLimit = 20
     }
 
-    @GET("$charactersEndPoint")
+    @GET(charactersEndPoint)
     suspend fun getCharacters(
         @Query("limit") limit : Int? = heroLimit,
         @Query("offset") offset : Int? = 0

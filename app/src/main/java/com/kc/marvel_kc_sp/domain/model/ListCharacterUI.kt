@@ -4,7 +4,7 @@ data class ListCharacterUI(
     val id: Int,
     val name: String,
     val description: String,
-    val thumbnail: Thumbnail,
+    val thumbnail: String,
     val favorite: Boolean,
-    val inPage: Int,
+    val position: Int,
 )

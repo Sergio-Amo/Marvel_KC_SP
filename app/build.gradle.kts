@@ -77,16 +77,17 @@ dependencies {
     // Room
     implementation("androidx.room:room-runtime:$room_version")
     annotationProcessor("androidx.room:room-compiler:$room_version")
-    // To use Kotlin annotation processing tool (kapt)
+    // Room annotation processing tool (kapt)
     kapt("androidx.room:room-compiler:$room_version")
-    // Kotlin Extensions and Coroutines support
+    // Room Kotlin Extensions and Coroutines support
     implementation("androidx.room:room-ktx:$room_version")
     // Dagger Hilt
     implementation("com.google.dagger:hilt-android:2.50")
     kapt("com.google.dagger:hilt-compiler:2.50")
-    //Navigation
+    // Navigation
     implementation("androidx.navigation:navigation-compose:2.7.6")
-
+    // Images (Coil)
+    implementation("io.coil-kt:coil-compose:2.5.0")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

@@ -10,6 +10,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.kc.marvel_kc_sp.ui.components.CharacterList
+import com.kc.marvel_kc_sp.ui.components.generateCharacters
 import com.kc.marvel_kc_sp.ui.list.ListViewModel
 import com.kc.marvel_kc_sp.ui.theme.Marvel_KC_SPTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,7 +30,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MainScreen(viewModel = listViewModel)
+                    //MainScreen(viewModel = listViewModel)
+                    CharacterList(characters = generateCharacters(12))
                 }
             }
         }
