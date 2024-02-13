@@ -9,6 +9,7 @@ import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -24,6 +25,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.CutCornerShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -33,6 +35,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
@@ -48,6 +51,7 @@ fun CharacterList(characters: List<ListCharacterUI>, modifier: Modifier = Modifi
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(14.dp),
         modifier = Modifier
+            .background(Color.Black)
             .fillMaxWidth()
             .padding(8.dp)
     ) {
@@ -57,7 +61,7 @@ fun CharacterList(characters: List<ListCharacterUI>, modifier: Modifier = Modifi
     }
 }
 
-@Preview(showSystemUi = true, showBackground = true/*, backgroundColor = 8997920*/)
+@Preview(showBackground = true)
 @Composable
 private fun CharacterList_Preview() {
     CharacterList(generateCharacters(10))
@@ -152,6 +156,7 @@ fun AnimatedImage(image: String, modifier: Modifier = Modifier) {
                 .scale(.8f + (.2f * transition))
                 .graphicsLayer(rotationX = (1f - transition) * 5f)
                 .alpha(min(1f, transition / .2f))
+                .clip(RoundedCornerShape(0,0,16,16))
         )
     }
 }
