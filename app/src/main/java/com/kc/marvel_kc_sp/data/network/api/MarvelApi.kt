@@ -16,7 +16,8 @@ interface MarvelApi {
     @GET(charactersEndPoint)
     suspend fun getCharacters(
         @Query("limit") limit : Int? = heroLimit,
-        @Query("offset") offset : Int? = 0
+        @Query("offset") offset : Int? = 0,
+        @Query("orderBy") sort: String = "name"
     ): MarvelRemote
 
 }
