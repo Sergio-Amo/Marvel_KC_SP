@@ -17,13 +17,13 @@ class RepositoryImpl @Inject constructor(
 ) : RepositoryInterface {
 
     override suspend fun getCharacters(page: Int): Flow<List<ListCharacterUI>> {
-        return if (localDataSource.isStorageUsed(page)) {
-            localDataSource.getCharacters(page).map { localToList.map(it) }
-        } else {
-            val remote = networkDataSource.getCharacters(page)
-            localDataSource.saveCharacters(remoteToLocal.map(remote.results, page))
-            localDataSource.getCharacters(page).map { localToList.map(it) }
+        if (!localDataSource.isStorageUsed(page)) {
+            val remote = networkDataSource.getCharacters(page).results
+            localDataSource.saveCharacters(
+                remoteToLocal.map(remote, page)
+            )
         }
+        return localDataSource.getCharacters(page).map { localToList.map(it) }
     }
 
     override suspend fun deleteDb() {

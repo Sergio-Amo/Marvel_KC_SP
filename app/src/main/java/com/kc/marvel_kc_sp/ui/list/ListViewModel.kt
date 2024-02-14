@@ -1,5 +1,6 @@
 package com.kc.marvel_kc_sp.ui.list
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kc.marvel_kc_sp.data.RepositoryInterface
@@ -29,13 +30,13 @@ class ListViewModel @Inject constructor(
 
     fun getCharacters() {
         page++
+        Log.d("SDAR", page.toString())
         viewModelScope.launch(Dispatchers.IO) {
             repository.getCharacters(page).collect { characters ->
                 _roomFlow.update {
                     it + characters
                 }
             }
-//            page++
         }
     }
 
