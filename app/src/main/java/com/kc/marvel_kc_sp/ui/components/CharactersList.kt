@@ -55,7 +55,6 @@ fun CharacterListItem(
         //shape = CutCornerShape(12, 0, 12, 0),
         elevation = CardDefaults.cardElevation(6.dp),
         colors = CardDefaults.cardColors(
-            contentColor = Color.White,
             containerColor = Color.Transparent
         ),
         modifier = Modifier
@@ -74,7 +73,7 @@ fun CharacterListItem(
                     .aspectRatio(1.77777777778f)
                     .clip(CardDefaults.shape)
             )
-            TextVGradient("character.name")
+            TextVGradient(character.name)
         }
     }
 }
@@ -89,7 +88,7 @@ private fun CharacterListItem_Preview() {
 fun generateCharacters(size: Int) = (0 until size).map {
     ListCharacterUI(
         it,
-        "A very long name for a character xxxxxxxllxxxx $it",
+        "A marvel character name $it",
         "Description $it",
         "https://i.annihil.us/u/prod/marvel/i/mg/f/80/4ce5a6d8b8f2a/landscape_incredible.jpg",
 //        "https://i.annihil.us/u/prod/marvel/i/mg/1/60/52695277ee088/landscape_incredible.jpg",

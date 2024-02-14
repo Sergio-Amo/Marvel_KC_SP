@@ -24,16 +24,16 @@ fun TextVGradient(text: String = "", modifier: Modifier = Modifier) {
             .background(
                 Brush.verticalGradient(
                     0F to Color.Transparent,
-                    .5F to Color.Black.copy(alpha = 0.6F),
+                    .44F to Color.Black.copy(alpha = 0.6F),
                     1F to Color.Black.copy(alpha = 0.8F)
                 )
             )
-            .padding(start = 8.dp, end = 8.dp, bottom = 8.dp, top = 28.dp)
+            .padding(start = 8.dp, end = 8.dp, bottom = 8.dp, top = 30.dp)
     )
 }
 
 @Preview(showBackground = true)
 @Composable
 private fun TextVGradient_Preview() {
-    TextVGradient("Some character name")
+    TextVGradient("Some very long character name")
 }
