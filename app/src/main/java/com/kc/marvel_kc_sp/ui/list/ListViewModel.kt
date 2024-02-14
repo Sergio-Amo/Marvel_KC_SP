@@ -27,7 +27,7 @@ class ListViewModel @Inject constructor(
         getCharacters()
     }
 
-    fun getCharacters() { // TODO: Offset & ¿limit?
+    fun getCharacters() {
         viewModelScope.launch(Dispatchers.IO) {
             repository.getCharactersRemote(page).collect { characters ->
                 _roomFlow.update {

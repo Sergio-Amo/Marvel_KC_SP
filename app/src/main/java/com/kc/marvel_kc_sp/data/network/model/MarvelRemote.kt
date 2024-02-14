@@ -3,7 +3,7 @@ package com.kc.marvel_kc_sp.data.network.model
 import com.squareup.moshi.Json
 
 
-// TODO: Decide which data to save, maybe just MarvelCharacterRemote and ignore all the rest?
+// TODO: Remove the unnecessary data
 data class MarvelRemote (
     @Json(name= "code") val code: Int, // K
 //    @Json(name= "status") val status: String, //F
