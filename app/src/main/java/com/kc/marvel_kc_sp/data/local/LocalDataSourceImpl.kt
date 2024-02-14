@@ -12,8 +12,8 @@ class LocalDataSourceImpl @Inject constructor(private val dao: MarvelDao) :
         return dao.getCharacters(page)
     }
 
-    override suspend fun isStorageUsed(): Boolean {
-        return dao.isStorageUsed()
+    override suspend fun isStorageUsed(page: Int): Boolean {
+        return dao.isStorageUsed(page)
     }
 
     override suspend fun getCharacterById(id: Int): ListCharacterLocal {

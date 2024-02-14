@@ -7,7 +7,7 @@ interface LocalDataSourceInterface {
 
     suspend fun getCharacters(page: Int): Flow<List<ListCharacterLocal>>
 
-    suspend fun isStorageUsed(): Boolean
+    suspend fun isStorageUsed(page: Int): Boolean
 
     suspend fun getCharacterById(id: Int): ListCharacterLocal
 

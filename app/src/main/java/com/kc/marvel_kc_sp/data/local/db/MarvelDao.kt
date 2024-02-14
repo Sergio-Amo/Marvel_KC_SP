@@ -10,10 +10,10 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface MarvelDao {
 
-    @Query("SELECT EXISTS (SELECT 1 FROM marvel_characters)")
-    suspend fun isStorageUsed(): Boolean
+    @Query("SELECT EXISTS (SELECT 1 FROM marvel_characters WHERE page = :page)")
+    suspend fun isStorageUsed(page: Int): Boolean
 
-    @Query("SELECT * FROM marvel_characters WHERE page = :page")
+    @Query("SELECT * FROM marvel_characters WHERE page = :page ORDER BY name")
     fun getCharacters(page: Int): Flow<List<ListCharacterLocal>>
 
     @Query("SELECT * FROM marvel_characters WHERE id = :id LIMIT 1")
