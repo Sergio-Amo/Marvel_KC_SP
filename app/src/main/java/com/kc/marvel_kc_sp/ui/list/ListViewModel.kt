@@ -29,15 +29,22 @@ class ListViewModel @Inject constructor(
     }
 
     fun getCharacters() {
-        page++
-        Log.d("SDAR", page.toString())
         viewModelScope.launch(Dispatchers.IO) {
+            page++
+            Log.d("SDAR", page.toString())
             repository.getCharacters(page).collect { characters ->
                 _roomFlow.update {
                     it + characters
                 }
             }
         }
+    }
+    fun loadMore(){
+        page++
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.loadMore(page)
+        }
+
     }
 
     suspend fun clearDB() {

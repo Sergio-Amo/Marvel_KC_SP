@@ -26,6 +26,15 @@ class RepositoryImpl @Inject constructor(
         return localDataSource.getCharacters(page).map { localToList.map(it) }
     }
 
+    override suspend fun loadMore(page: Int) {
+        if (!localDataSource.isStorageUsed(page)) {
+            val remote = networkDataSource.getCharacters(page).results
+            localDataSource.saveCharacters(
+                remoteToLocal.map(remote, page)
+            )
+        }
+    }
+
     override suspend fun deleteDb() {
         localDataSource.deleteCharacters()
     }

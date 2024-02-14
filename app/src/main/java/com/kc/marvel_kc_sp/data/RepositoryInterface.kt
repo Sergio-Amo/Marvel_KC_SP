@@ -7,4 +7,5 @@ interface RepositoryInterface {
 
     suspend fun getCharacters(page: Int): Flow<List<ListCharacterUI>>
     suspend fun deleteDb()
+    suspend fun loadMore(page: Int)
 }

@@ -33,7 +33,7 @@ fun CharactersListScreen(viewModel: ListViewModel = hiltViewModel()) {
             viewModel.clearDB()
         }
     }) {
-        viewModel.getCharacters()
+        viewModel.loadMore()
     }
 }
 

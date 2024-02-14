@@ -19,8 +19,7 @@ object LocalModule {
     @Provides
     fun providesMarvelDatabase(@ApplicationContext context: Context): MarvelDatabase {
         return Room.databaseBuilder(
-            context,
-            MarvelDatabase::class.java, "marvel-database"
+            context, MarvelDatabase::class.java, "marvel-database"
         ).build()
     }
 
