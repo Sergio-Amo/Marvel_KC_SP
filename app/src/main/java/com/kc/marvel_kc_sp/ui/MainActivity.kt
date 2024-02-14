@@ -8,7 +8,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.kc.marvel_kc_sp.ui.theme.Marvel_KC_SPTheme
-import com.kc.marvel_kc_sp.ui.ui.list.HeroesListScreen
+import com.kc.marvel_kc_sp.ui.ui.list.CharactersListScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,7 +25,7 @@ class MainActivity : ComponentActivity() {
                     //MainScreen(viewModel = listViewModel)
                     //CharacterList(characters = generateCharacters(100))
                     //NavigationController()
-                    HeroesListScreen()
+                    CharactersListScreen()
                 }
             }
         }
