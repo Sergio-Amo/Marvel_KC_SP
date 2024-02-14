@@ -3,6 +3,7 @@ package com.kc.marvel_kc_sp.ui.components
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,7 +13,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -52,20 +52,14 @@ fun CharacterListItem(
     modifier: Modifier = Modifier,
 ) {
     Card(
-        //shape = CutCornerShape(12, 0, 12, 0),
         elevation = CardDefaults.cardElevation(6.dp),
         colors = CardDefaults.cardColors(
             containerColor = Color.Transparent
         ),
         modifier = Modifier
             .background(Color.Black)
-//            .border(
-//                width = 4.dp,
-//                color = Color.Red,
-//                CutCornerShape(12, 0, 12, 0)
-//            )
     ) {
-        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.BottomStart) {
+        Box(modifier = Modifier.fillMaxSize()) {
             AnimatedImage(
                 image = character.thumbnail, preview = preview, modifier = Modifier
                     .fillMaxSize()
@@ -73,7 +67,9 @@ fun CharacterListItem(
                     .aspectRatio(1.77777777778f)
                     .clip(CardDefaults.shape)
             )
-            TextVGradient(character.name)
+            Row(Modifier.fillMaxWidth()) {
+                TextTopVGradient(character.name)
+            }
         }
     }
 }

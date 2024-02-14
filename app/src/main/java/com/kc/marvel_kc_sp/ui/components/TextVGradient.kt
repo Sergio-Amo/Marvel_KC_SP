@@ -13,7 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun TextVGradient(text: String = "", modifier: Modifier = Modifier) {
+fun TextBottomVGradient(text: String = "", modifier: Modifier = Modifier) {
     Text(
         text = text,
         style = MaterialTheme.typography.headlineMedium,
@@ -24,16 +24,42 @@ fun TextVGradient(text: String = "", modifier: Modifier = Modifier) {
             .background(
                 Brush.verticalGradient(
                     0F to Color.Transparent,
-                    .44F to Color.Black.copy(alpha = 0.6F),
+                    .42F to Color.Black.copy(alpha = 0.6F),
                     1F to Color.Black.copy(alpha = 0.8F)
                 )
             )
-            .padding(start = 8.dp, end = 8.dp, bottom = 8.dp, top = 30.dp)
+            .padding(start = 8.dp, end = 8.dp, bottom = 8.dp, top = 32.dp)
     )
 }
 
 @Preview(showBackground = true)
 @Composable
-private fun TextVGradient_Preview() {
-    TextVGradient("Some very long character name")
+private fun TextBottomVGradient_Preview() {
+    TextBottomVGradient("Some very long character name")
+}
+
+@Composable
+fun TextTopVGradient(text: String = "", modifier: Modifier = Modifier) {
+    Text(
+        text = text,
+        style = MaterialTheme.typography.headlineMedium,
+        color = Color.White,
+        modifier = modifier
+            .fillMaxWidth()
+            //.align(Alignment.BottomStart)
+            .background(
+                Brush.verticalGradient(
+                    0F to Color.Black.copy(alpha = 0.8F),
+                    .58F to Color.Black.copy(alpha = 0.6F),
+                    1F to Color.Transparent
+                )
+            )
+            .padding(start = 8.dp, end = 8.dp, bottom = 32.dp, top = 8.dp)
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun TextTopVGradient_Preview() {
+    TextTopVGradient("Some very long character name")
 }
