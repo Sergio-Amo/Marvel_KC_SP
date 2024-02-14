@@ -3,19 +3,25 @@ package com.kc.marvel_kc_sp.ui.components
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kc.marvel_kc_sp.domain.model.ListCharacterUI
@@ -29,7 +35,7 @@ fun CharacterList(
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(14.dp),
         modifier = Modifier
-            .background(Color.Black)
+            .background(Color.White)
             .fillMaxWidth()
             .padding(8.dp)
     ) {
@@ -67,8 +73,27 @@ fun CharacterListItem(
                     .aspectRatio(1.77777777778f)
                     .clip(CardDefaults.shape)
             )
-            Row(Modifier.fillMaxWidth()) {
-                TextTopVGradient(character.name)
+
+            TextBottomVGradient(character.name, Modifier.align(Alignment.BottomStart))
+
+            IconButton(
+                modifier = Modifier.align(Alignment.TopEnd),
+                onClick = {
+                    // DoOnClick
+                }) {
+                if (character.favorite) {
+                    Icon(
+                        painter = rememberVectorPainter(Icons.Filled.Favorite),
+                        contentDescription = "Favorite",
+                        tint = Color.White,
+                        )
+                } else {
+                    Icon(
+                        painter = rememberVectorPainter(Icons.Filled.FavoriteBorder),
+                        contentDescription = "Not favorite",
+                        tint = Color.White
+                    )
+                }
             }
         }
     }
