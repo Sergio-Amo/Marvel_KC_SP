@@ -32,6 +32,7 @@ fun CharacterListItem(
     character: ListCharacterUI,
     preview: Boolean = false,
     modifier: Modifier = Modifier,
+    favorite: (id: Int) -> Unit
 ) {
     Card(
         elevation = CardDefaults.cardElevation(5.dp),
@@ -62,7 +63,7 @@ fun CharacterListItem(
                     .padding(40.dp, 0.dp, 0.dp, 40.dp)
                     .align(Alignment.TopEnd),
                 onClick = {
-                    // DoOnClick
+                    favorite(character.id)
                 }) {
                 if (character.favorite) {
                     Icon(
@@ -85,5 +86,5 @@ fun CharacterListItem(
 @Preview
 @Composable
 private fun CharacterListItem_Preview() {
-    CharacterListItem(CharacterMocks.generateCharactersUI(1).first(), preview = true)
+    CharacterListItem(CharacterMocks.generateCharactersUI(1).first(), preview = true){}
 }

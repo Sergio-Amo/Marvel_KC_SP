@@ -16,13 +16,16 @@ interface MarvelDao {
     @Query("SELECT * FROM marvel_characters WHERE page = :page ORDER BY name")
     fun getCharacters(page: Int): Flow<List<ListCharacterLocal>>
 
+    @Query("SELECT * FROM marvel_characters ORDER BY name")
+    fun getAllCharacters(page: Int): Flow<List<ListCharacterLocal>>
+
     @Query("SELECT * FROM marvel_characters WHERE id = :id LIMIT 1")
     suspend fun getCharacterById(id: Int): ListCharacterLocal
 
     @Insert
-    suspend fun saveCharacters(characters: List<ListCharacterLocal>)
+    fun saveCharacters(characters: List<ListCharacterLocal>)
 
-    @Update
+    @Update(ListCharacterLocal::class)
     suspend fun updateCharacter(characters: ListCharacterLocal)
 
     @Query("DELETE FROM marvel_characters")

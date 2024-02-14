@@ -16,7 +16,7 @@ class RepositoryImpl @Inject constructor(
     private val localToList: LocalToList,
 ) : RepositoryInterface {
 
-    override suspend fun getCharacters(page: Int): Flow<List<ListCharacterUI>> {
+    /*override suspend fun getCharacters(page: Int): Flow<List<ListCharacterUI>> {
         if (!localDataSource.isStorageUsed(page)) {
             val remote = networkDataSource.getCharacters(page).results
             localDataSource.saveCharacters(
@@ -24,7 +24,7 @@ class RepositoryImpl @Inject constructor(
             )
         }
         return localDataSource.getCharacters(page).map { localToList.map(it) }
-    }
+    }*/
 
     override suspend fun loadMore(page: Int) {
         if (!localDataSource.isStorageUsed(page)) {
@@ -35,7 +35,21 @@ class RepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun favorite(id: Int) {
+        localDataSource.toggleFavorite(id)
+    }
+
     override suspend fun deleteDb() {
         localDataSource.deleteCharacters()
+    }
+
+    override suspend fun getFlow(): Flow<List<ListCharacterUI>> {
+        if (localDataSource.isStorageUsed(1) == false) {
+            val remote = networkDataSource.getCharacters(1)
+            localDataSource.saveCharacters(remoteToLocal.map(remote.results, 1))
+        }
+        return localDataSource.getCharacters(1).map {
+            localToList.map(it)
+        }
     }
 }

@@ -28,11 +28,20 @@ fun CharactersListScreen(viewModel: ListViewModel = hiltViewModel()) {
     val characters by viewModel.roomFlow.collectAsState()
     val scope = rememberCoroutineScope()
 
-    CharacterList(characters = characters, totalItems = characters.size, clearDB = {
-        scope.launch(Dispatchers.IO){
-            viewModel.clearDB()
+    CharacterList(
+        characters = characters,
+        totalItems = characters.size,
+        clearDB = {
+            scope.launch(Dispatchers.IO) {
+                viewModel.clearDB()
+            }
+        },
+        favorite = {
+            scope.launch(Dispatchers.IO) {
+                viewModel.favorite(it)
+            }
         }
-    }) {
+    ) {
         viewModel.loadMore()
     }
 }
@@ -44,6 +53,7 @@ fun CharacterList(
     totalItems: Int,
     modifier: Modifier = Modifier,
     clearDB: () -> Unit,
+    favorite: (id: Int) -> Unit,
     loadNextPage: () -> Unit,
 ) {
 
@@ -62,7 +72,9 @@ fun CharacterList(
                 .padding(8.dp)
         ) {
             items(totalItems) { idx ->
-                CharacterListItem(character = characters[idx], preview = preview)
+                CharacterListItem(character = characters[idx], preview = preview) { id ->
+                    favorite(id)
+                }
                 if (idx == totalItems - 5)
                     loadNextPage()
             }
@@ -77,6 +89,7 @@ private fun CharacterList_Preview() {
         CharacterMocks.generateCharactersUI(12),
         preview = true,
         totalItems = 12,
-        clearDB = {}
+        clearDB = {},
+        favorite = {},
     ) {}
 }
