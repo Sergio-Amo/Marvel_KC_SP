@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -16,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.kc.marvel_kc_sp.domain.model.ListCharacterUI
 import com.kc.marvel_kc_sp.ui.components.CharacterListItem
+import com.kc.marvel_kc_sp.ui.components.MarvelBar
 
 @Composable
 fun CharactersListScreen(viewModel: ListViewModel = hiltViewModel()) {
@@ -37,18 +39,23 @@ fun CharacterList(
 
     val listState = rememberLazyListState()
 
-    LazyColumn(
-        state = listState,
-        verticalArrangement = Arrangement.spacedBy(14.dp),
-        modifier = Modifier
-            .background(Color.White)
-            .fillMaxSize()
-            .padding(8.dp)
-    ) {
-        items(totalItems) { idx ->
-            CharacterListItem(character = characters[idx], preview = preview)
-            if (idx == totalItems - 2)
-                loadNextPage()
+    Scaffold(topBar = {
+        MarvelBar()
+    }) { padding ->
+        LazyColumn(
+            state = listState,
+            verticalArrangement = Arrangement.spacedBy(14.dp),
+            modifier = Modifier
+                .padding(padding)
+                .background(Color.White)
+                .fillMaxSize()
+                .padding(8.dp)
+        ) {
+            items(totalItems) { idx ->
+                CharacterListItem(character = characters[idx], preview = preview)
+                if (idx == totalItems - 2)
+                    loadNextPage()
+            }
         }
     }
 }
