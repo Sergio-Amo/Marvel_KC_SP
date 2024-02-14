@@ -7,12 +7,9 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.kc.marvel_kc_sp.ui.components.CharacterList
-import com.kc.marvel_kc_sp.ui.components.generateCharacters
 import com.kc.marvel_kc_sp.ui.list.ListViewModel
+import com.kc.marvel_kc_sp.ui.navigation.NavigationController
 import com.kc.marvel_kc_sp.ui.theme.Marvel_KC_SPTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -31,13 +28,14 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     //MainScreen(viewModel = listViewModel)
-                    CharacterList(characters = generateCharacters(12))
+                    //CharacterList(characters = generateCharacters(12))
+                    NavigationController()
                 }
             }
         }
     }
 }
-
+/*
 @Composable
 fun MainScreen(viewModel: ListViewModel) {
     Text(
@@ -45,4 +43,4 @@ fun MainScreen(viewModel: ListViewModel) {
     )
     viewModel.getCharacters()
 }
-
+*/
