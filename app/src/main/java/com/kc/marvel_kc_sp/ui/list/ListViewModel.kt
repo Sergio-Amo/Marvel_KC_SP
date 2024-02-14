@@ -29,7 +29,7 @@ class ListViewModel @Inject constructor(
 
     fun getCharacters() {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.getCharactersRemote(page).collect { characters ->
+            repository.getCharacters(page).collect { characters ->
                 _roomFlow.update {
                     it + characters
                 }
