@@ -1,4 +1,4 @@
-package com.kc.marvel_kc_sp.domain.model
+package com.kc.marvel_kc_sp.data.local.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -10,7 +10,7 @@ data class ListCharacterLocal (
     @ColumnInfo(name = "id") val id: Int,
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "description") val description: String,
-    @ColumnInfo(name = "thumbnail") val thumbnail: Thumbnail,
-    @ColumnInfo(name = "favorite") val favorite: Boolean,
+    @ColumnInfo(name = "thumbnail") val thumbnail: String,
+    @ColumnInfo(name = "favorite") var favorite: Boolean,
     @ColumnInfo(name = "page") val page: Int,
 )
