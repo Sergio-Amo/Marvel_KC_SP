@@ -1,20 +1,17 @@
 package com.kc.marvel_kc_sp.ui.components
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -54,10 +51,19 @@ fun CharacterListItem(
     modifier: Modifier = Modifier,
 ) {
     Card(
-        shape = CutCornerShape(12, 0, 12, 0),
+        //shape = CutCornerShape(12, 0, 12, 0),
         elevation = CardDefaults.cardElevation(6.dp),
+        colors = CardDefaults.cardColors(
+            contentColor = Color.White,
+            containerColor = Color.DarkGray
+        ),
         modifier = Modifier
-            .border(width = 4.dp, color = Color.Red, CutCornerShape(12, 0, 12, 0))
+            .background(Color.Black)
+//            .border(
+//                width = 4.dp,
+//                color = Color.Red,
+//                CutCornerShape(12, 0, 12, 0)
+//            )
     ) {
         Column(
             modifier = Modifier
@@ -65,12 +71,17 @@ fun CharacterListItem(
                 .height(IntrinsicSize.Min)
         ) {
 
-            AnimatedImage(image = character.thumbnail, preview = preview)
-            Text(
-                text = character.name,
-                style = MaterialTheme.typography.headlineMedium,
-                modifier = Modifier.padding(12.dp)
+            AnimatedImage(
+                image = character.thumbnail, preview = preview, modifier = Modifier
+                    .fillMaxWidth()
+                    //16:9 as the images requested
+                    .aspectRatio(1.77777777778f)
             )
+//            Text(
+//                text = character.name,
+//                style = MaterialTheme.typography.headlineMedium,
+//                modifier = Modifier.padding(12.dp)
+//            )
 
         }
     }
@@ -79,7 +90,7 @@ fun CharacterListItem(
 @Preview
 @Composable
 private fun CharacterListItem_Preview() {
-    CharacterListItem(generateCharacters(1).first())
+    CharacterListItem(generateCharacters(1).first(), preview = true)
 }
 
 
