@@ -18,6 +18,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.kc.marvel_kc_sp.domain.model.ListCharacterUI
 import com.kc.marvel_kc_sp.ui.components.CharacterListItem
 import com.kc.marvel_kc_sp.ui.components.MarvelBar
+import com.kc.marvel_kc_sp.utils.CharacterMocks
 
 @Composable
 fun CharactersListScreen(viewModel: ListViewModel = hiltViewModel()) {
@@ -64,22 +65,8 @@ fun CharacterList(
 @Composable
 private fun CharacterList_Preview() {
     CharacterList(
-        generateCharacters(12),
+        CharacterMocks.generateCharactersUI(12),
         preview = true,
-        totalItems = generateCharacters(12).size
+        totalItems = 12
     ) {}
-}
-
-// TODO: move this to an external mock object
-fun generateCharacters(size: Int) = (0 until size).map {
-    ListCharacterUI(
-        it,
-        "A marvel character name $it",
-        "Description $it",
-        "https://i.annihil.us/u/prod/marvel/i/mg/f/80/4ce5a6d8b8f2a/landscape_incredible.jpg",
-//        "https://i.annihil.us/u/prod/marvel/i/mg/1/60/52695277ee088/landscape_incredible.jpg",
-        //"https://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available/landscape_incredible.jpg",
-        it % 3 == 0,
-        it,
-    )
 }
