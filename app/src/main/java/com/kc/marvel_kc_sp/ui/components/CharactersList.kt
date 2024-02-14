@@ -20,6 +20,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.tooling.preview.Preview
@@ -60,7 +62,6 @@ fun CharacterListItem(
     Card(
         elevation = CardDefaults.cardElevation(5.dp),
         modifier = Modifier
-            .background(Color.Transparent)
             .fillMaxWidth()
             //16:9 as the images requested
             .aspectRatio(1.77777777778f)
@@ -75,7 +76,17 @@ fun CharacterListItem(
             TextBottomVGradient(character.name, Modifier.align(Alignment.BottomStart))
 
             IconButton(
-                modifier = Modifier.align(Alignment.TopEnd),
+                modifier = Modifier
+
+                    .background(
+                        Brush.radialGradient(
+                            colors = listOf(Color.Black.copy(alpha = 0.4f), Color.Transparent),
+                            center = Offset(230f, 0f),
+                            radius = 150f
+                        )
+                    )
+                    .padding(40.dp, 0.dp, 0.dp, 40.dp)
+                    .align(Alignment.TopEnd),
                 onClick = {
                     // DoOnClick
                 }) {
