@@ -30,7 +30,9 @@ class ListViewModel @Inject constructor(
     fun getCharacters() { // TODO: Offset & ¿limit?
         viewModelScope.launch(Dispatchers.IO) {
             repository.getCharactersRemote(page).collect { characters ->
-                _roomFlow.update { characters }
+                _roomFlow.update {
+                    it + characters
+                }
             }
             page++
         }

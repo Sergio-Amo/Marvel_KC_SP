@@ -47,7 +47,7 @@ fun CharacterList(
     ) {
         items(totalItems) { idx ->
             CharacterListItem(character = characters[idx], preview = preview)
-            if (idx == totalItems - 1)
+            if (idx == totalItems - 2)
                 loadNextPage()
         }
     }
