@@ -36,7 +36,7 @@ fun CharacterList(
         verticalArrangement = Arrangement.spacedBy(14.dp),
         modifier = Modifier
             .background(Color.White)
-            .fillMaxWidth()
+            .fillMaxSize()
             .padding(8.dp)
     ) {
         items(characters) {
@@ -61,13 +61,14 @@ fun CharacterListItem(
         elevation = CardDefaults.cardElevation(5.dp),
         modifier = Modifier
             .background(Color.Transparent)
+            .fillMaxWidth()
+            //16:9 as the images requested
+            .aspectRatio(1.77777777778f)
     ) {
-        Box(modifier = Modifier.fillMaxSize()) {
+        Box() {
             AnimatedImage(
                 image = character.thumbnail, preview = preview, modifier = Modifier
                     .fillMaxSize()
-                    //16:9 as the images requested
-                    .aspectRatio(1.77777777778f)
                     .clip(CardDefaults.shape)
             )
 
@@ -83,7 +84,7 @@ fun CharacterListItem(
                         painter = rememberVectorPainter(Icons.Filled.Favorite),
                         contentDescription = "Favorite",
                         tint = Color.White,
-                        )
+                    )
                 } else {
                     Icon(
                         painter = rememberVectorPainter(Icons.Filled.FavoriteBorder),

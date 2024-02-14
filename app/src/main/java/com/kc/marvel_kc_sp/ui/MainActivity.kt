@@ -29,7 +29,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     //MainScreen(viewModel = listViewModel)
-                    CharacterList(characters = generateCharacters(12))
+                    CharacterList(characters = generateCharacters(100))
                     //NavigationController()
                 }
             }
