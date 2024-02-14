@@ -21,13 +21,15 @@ class ListViewModel @Inject constructor(
     private val _roomFlow: MutableStateFlow<List<ListCharacterUI>> = MutableStateFlow(emptyList())
     val roomFlow: StateFlow<List<ListCharacterUI>> = _roomFlow.asStateFlow()
 
+    private val page: Int = 1
+
     init {
-        getCharacters()
+        getCharacters(page)
     }
 
-    fun getCharacters() { // TODO: Offset & ¿limit?
+    fun getCharacters(page: Int) { // TODO: Offset & ¿limit?
         viewModelScope.launch(Dispatchers.IO) {
-            repository.getCharactersRemote().collect{ characters ->
+            repository.getCharactersRemote(page).collect { characters ->
                 _roomFlow.update { characters }
             }
         }

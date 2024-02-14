@@ -12,5 +12,5 @@ data class ListCharacterLocal (
     @ColumnInfo(name = "description") val description: String,
     @ColumnInfo(name = "thumbnail") val thumbnail: Thumbnail,
     @ColumnInfo(name = "favorite") val favorite: Boolean,
-    @ColumnInfo(name = "position") val position: Int,
+    @ColumnInfo(name = "page") val page: Int,
 )

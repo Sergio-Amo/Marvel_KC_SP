@@ -6,5 +6,7 @@ data class ListCharacterUI(
     val description: String,
     val thumbnail: String,
     val favorite: Boolean,
-    val position: Int,
+    val page: Int,
 )
+
+// TODO: Separate character ui for list and description

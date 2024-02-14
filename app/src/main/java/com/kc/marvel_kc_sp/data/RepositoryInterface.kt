@@ -5,5 +5,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface RepositoryInterface {
     suspend fun getCharactersLocal()/*: Flow<List<ListCharacterLocal>>*/
-    suspend fun getCharactersRemote(): Flow<List<ListCharacterUI>>
+    suspend fun getCharactersRemote(page: Int): Flow<List<ListCharacterUI>>
 }
