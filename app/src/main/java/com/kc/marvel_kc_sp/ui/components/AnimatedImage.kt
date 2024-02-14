@@ -8,11 +8,13 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material3.CardDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
@@ -55,8 +57,8 @@ fun AnimatedImage(
                 .scale(.8f + (.2f * transition))
                 .graphicsLayer(rotationX = (1f - transition) * 5f)
                 .alpha(min(1f, transition / .2f))
+                .clip(CardDefaults.shape)
         )
-        TextVGradient("Some Text", Modifier.align(Alignment.BottomEnd))
     }
 }
 

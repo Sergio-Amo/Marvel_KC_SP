@@ -2,18 +2,19 @@ package com.kc.marvel_kc_sp.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -55,7 +56,7 @@ fun CharacterListItem(
         elevation = CardDefaults.cardElevation(6.dp),
         colors = CardDefaults.cardColors(
             contentColor = Color.White,
-            containerColor = Color.DarkGray
+            containerColor = Color.Transparent
         ),
         modifier = Modifier
             .background(Color.Black)
@@ -65,24 +66,15 @@ fun CharacterListItem(
 //                CutCornerShape(12, 0, 12, 0)
 //            )
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(IntrinsicSize.Min)
-        ) {
-
+        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.BottomStart) {
             AnimatedImage(
                 image = character.thumbnail, preview = preview, modifier = Modifier
-                    .fillMaxWidth()
+                    .fillMaxSize()
                     //16:9 as the images requested
                     .aspectRatio(1.77777777778f)
+                    .clip(CardDefaults.shape)
             )
-//            Text(
-//                text = character.name,
-//                style = MaterialTheme.typography.headlineMedium,
-//                modifier = Modifier.padding(12.dp)
-//            )
-
+            TextVGradient("character.name")
         }
     }
 }
