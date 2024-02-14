@@ -24,7 +24,7 @@ import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kc.marvel_kc_sp.domain.model.ListCharacterUI
-import com.kc.marvel_kc_sp.ui.ui.list.generateCharacters
+import com.kc.marvel_kc_sp.ui.list.generateCharacters
 
 
 @Composable

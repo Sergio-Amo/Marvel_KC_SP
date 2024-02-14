@@ -1,4 +1,4 @@
-package com.kc.marvel_kc_sp.ui.ui.list
+package com.kc.marvel_kc_sp.ui.list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
