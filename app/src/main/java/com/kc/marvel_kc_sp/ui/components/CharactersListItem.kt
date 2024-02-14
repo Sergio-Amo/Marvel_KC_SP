@@ -47,7 +47,7 @@ fun CharacterListItem(
                     .clip(CardDefaults.shape)
             )
 
-            TextBottomVGradient("${character.name} p:${character.page}", Modifier.align(Alignment.BottomStart))
+            TextBottomVGradient(character.name, Modifier.align(Alignment.BottomStart))
 
             IconButton(
                 modifier = Modifier
