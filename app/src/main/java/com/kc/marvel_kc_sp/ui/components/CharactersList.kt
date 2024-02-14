@@ -58,12 +58,9 @@ fun CharacterListItem(
     modifier: Modifier = Modifier,
 ) {
     Card(
-        elevation = CardDefaults.cardElevation(6.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = Color.Transparent
-        ),
+        elevation = CardDefaults.cardElevation(5.dp),
         modifier = Modifier
-            .background(Color.Black)
+            .background(Color.Transparent)
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
             AnimatedImage(
