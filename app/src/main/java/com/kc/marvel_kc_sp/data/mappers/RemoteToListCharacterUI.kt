@@ -27,7 +27,7 @@ class RemoteToListCharacterUI @Inject constructor() {
         return ListCharacterUI(
             id = remote.id,
             name = remote.name,
-            description = remote.description,
+            description = remote.description.ifEmpty { "There's no description available." },
             thumbnail = finalUrl(remote.thumbnail.path, remote.thumbnail.extension),
             favorite = false,
             page = page
