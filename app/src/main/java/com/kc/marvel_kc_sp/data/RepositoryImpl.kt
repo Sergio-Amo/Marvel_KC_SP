@@ -44,11 +44,11 @@ class RepositoryImpl @Inject constructor(
     }
 
     override suspend fun getFlow(): Flow<List<ListCharacterUI>> {
-        if (localDataSource.isStorageUsed(1) == false) {
+        if (!localDataSource.isStorageUsed(1)) {
             val remote = networkDataSource.getCharacters(1)
             localDataSource.saveCharacters(remoteToLocal.map(remote.results, 1))
         }
-        return localDataSource.getCharacters(1).map {
+        return localDataSource.getAllCharacters().map {
             localToList.map(it)
         }
     }

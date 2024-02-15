@@ -17,7 +17,7 @@ interface MarvelDao {
     fun getCharacters(page: Int): Flow<List<ListCharacterLocal>>
 
     @Query("SELECT * FROM marvel_characters ORDER BY name")
-    fun getAllCharacters(page: Int): Flow<List<ListCharacterLocal>>
+    fun getAllCharacters(): Flow<List<ListCharacterLocal>>
 
     @Query("SELECT * FROM marvel_characters WHERE id = :id LIMIT 1")
     suspend fun getCharacterById(id: Int): ListCharacterLocal
