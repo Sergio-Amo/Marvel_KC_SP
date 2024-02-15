@@ -17,6 +17,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.AsyncImagePainter
@@ -50,6 +51,7 @@ fun AnimatedImage(
             )
 
         Image(
+            contentScale = ContentScale.FillBounds,
             painter = if (preview) painterResource(id = R.drawable.landscape_placeholder) else painter,
             contentDescription = "custom transition based on painter state",
             modifier = Modifier

@@ -49,7 +49,7 @@ fun CharacterListItem(
                     .background(Color.White)
             )
 
-            TextBottomVGradient("${character.page}:${character.name}", Modifier.align(Alignment.BottomStart))
+            TextBottomVGradient(character.name, Modifier.align(Alignment.BottomStart))
 
             IconButton(
                 modifier = Modifier
