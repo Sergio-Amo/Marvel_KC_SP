@@ -46,6 +46,7 @@ fun CharacterListItem(
                 image = character.thumbnail, preview = preview, modifier = Modifier
                     .fillMaxSize()
                     .clip(CardDefaults.shape)
+                    .background(Color.White)
             )
 
             TextBottomVGradient("${character.page}:${character.name}", Modifier.align(Alignment.BottomStart))
