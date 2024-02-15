@@ -24,7 +24,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kc.marvel_kc_sp.domain.model.ListCharacterUI
-import com.kc.marvel_kc_sp.utils.CharacterMocks
+import com.kc.marvel_kc_sp.utils.Mocks
 
 @Composable
 fun LazyRowFavCharacters(
@@ -55,7 +55,7 @@ fun LazyRowFavCharacters(
 @Preview(showSystemUi = true)
 @Composable
 private fun LazyRowFavCharacters_Preview() {
-    LazyRowFavCharacters(CharacterMocks.generateCharactersUI(8), true)
+    LazyRowFavCharacters(Mocks.generateCharactersUI(8), true)
 }
 
 @Composable
@@ -102,5 +102,5 @@ fun CharacterPortraitItem(
 @Preview
 @Composable
 private fun CharacterPortraitItem_Preview() {
-    CharacterPortraitItem(CharacterMocks.generateCharactersUI(1).first())
+    CharacterPortraitItem(Mocks.generateCharactersUI(1).first(), preview = true)
 }

@@ -24,7 +24,7 @@ import com.kc.marvel_kc_sp.domain.model.ListCharacterUI
 import com.kc.marvel_kc_sp.ui.components.CharacterListItem
 import com.kc.marvel_kc_sp.ui.components.LazyRowFavCharacters
 import com.kc.marvel_kc_sp.ui.components.MarvelBar
-import com.kc.marvel_kc_sp.utils.CharacterMocks
+import com.kc.marvel_kc_sp.utils.Mocks
 import com.kc.marvel_kc_sp.utils.fillWidthOfParent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -123,8 +123,8 @@ fun CharacterList(
 @Composable
 private fun CharacterList_Preview() {
     CharacterList(
-        CharacterMocks.generateCharactersUI(12),
-        favorites = CharacterMocks.generateCharactersUI(12).filter { it.favorite },
+        Mocks.generateCharactersUI(12),
+        favorites = Mocks.generateCharactersUI(12).filter { it.favorite },
         preview = true,
         totalItems = 12,
         clearDB = {},
