@@ -2,6 +2,7 @@ package com.kc.marvel_kc_sp.data.local.db
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.kc.marvel_kc_sp.data.local.model.ListCharacterLocal
@@ -22,7 +23,7 @@ interface MarvelDao {
     @Query("SELECT * FROM marvel_characters WHERE id = :id LIMIT 1")
     suspend fun getCharacterById(id: Int): ListCharacterLocal
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveCharacters(characters: List<ListCharacterLocal>)
 
     @Update(ListCharacterLocal::class)
