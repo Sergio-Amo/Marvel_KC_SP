@@ -22,13 +22,15 @@ class ListViewModel @Inject constructor(
     private val _roomFlow: MutableStateFlow<List<ListCharacterUI>> = MutableStateFlow(emptyList())
     val roomFlow: StateFlow<List<ListCharacterUI>> = _roomFlow.asStateFlow()
 
-    //private var page: Int = 1
+    private val _favFlow: MutableStateFlow<List<ListCharacterUI>> = MutableStateFlow(emptyList())
+    val favFlow: StateFlow<List<ListCharacterUI>> = _favFlow.asStateFlow()
 
     init {
         getFlow()
+        getFavoriteFlow()
     }
 
-    private fun getFlow(){
+    private fun getFlow() {
         viewModelScope.launch(Dispatchers.IO) {
             repository.getFlow().collect { characters ->
                 _roomFlow.update { characters.map { it } }
@@ -36,9 +38,17 @@ class ListViewModel @Inject constructor(
         }
     }
 
+    private fun getFavoriteFlow() {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.getFavoriteFlow().collect() { favorites ->
+                _favFlow.update { favorites.map { it } }
+            }
+        }
+    }
+
     fun loadMore(page: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.loadMore(page+1)
+            repository.loadMore(page + 1)
         }
     }
 

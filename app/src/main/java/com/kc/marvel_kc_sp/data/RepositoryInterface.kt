@@ -9,4 +9,5 @@ interface RepositoryInterface {
     suspend fun loadMore(page: Int)
     suspend fun favorite(id: Int)
     suspend fun getFlow(): Flow<List<ListCharacterUI>>
+    suspend fun getFavoriteFlow(): Flow<List<ListCharacterUI>>
 }

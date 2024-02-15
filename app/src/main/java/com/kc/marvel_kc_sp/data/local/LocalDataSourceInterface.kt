@@ -9,6 +9,8 @@ interface LocalDataSourceInterface {
 
     suspend fun getAllCharacters(): Flow<List<ListCharacterLocal>>
 
+    suspend fun getFavoriteCharacters(): Flow<List<ListCharacterLocal>>
+
     suspend fun isStorageUsed(page: Int): Boolean
 
     suspend fun getCharacterById(id: Int): ListCharacterLocal

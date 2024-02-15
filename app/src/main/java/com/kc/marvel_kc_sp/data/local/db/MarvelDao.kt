@@ -17,6 +17,9 @@ interface MarvelDao {
     @Query("SELECT * FROM marvel_characters WHERE page = :page ORDER BY name")
     fun getCharacters(page: Int): Flow<List<ListCharacterLocal>>
 
+    @Query("SELECT * FROM marvel_characters WHERE favorite = TRUE ORDER BY name")
+    fun getFavoriteCharacters(): Flow<List<ListCharacterLocal>>
+
     @Query("SELECT * FROM marvel_characters ORDER BY name")
     fun getAllCharacters(): Flow<List<ListCharacterLocal>>
 

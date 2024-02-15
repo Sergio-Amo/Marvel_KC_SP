@@ -16,6 +16,10 @@ class LocalDataSourceImpl @Inject constructor(private val dao: MarvelDao) :
         return dao.getAllCharacters()
     }
 
+    override suspend fun getFavoriteCharacters(): Flow<List<ListCharacterLocal>> {
+        return dao.getFavoriteCharacters()
+    }
+
     override suspend fun isStorageUsed(page: Int): Boolean {
         return dao.isStorageUsed(page)
     }

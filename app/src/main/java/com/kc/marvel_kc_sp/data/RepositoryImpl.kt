@@ -42,4 +42,8 @@ class RepositoryImpl @Inject constructor(
             localToList.map(it)
         }
     }
+
+    override suspend fun getFavoriteFlow(): Flow<List<ListCharacterUI>> {
+        return localDataSource.getFavoriteCharacters().map { localToList.map(it) }
+    }
 }

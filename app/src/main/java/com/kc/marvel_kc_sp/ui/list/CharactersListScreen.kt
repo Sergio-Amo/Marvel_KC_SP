@@ -26,6 +26,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun CharactersListScreen(viewModel: ListViewModel = hiltViewModel()) {
     val characters by viewModel.roomFlow.collectAsState()
+    val favorites by viewModel.favFlow.collectAsState()
     val scope = rememberCoroutineScope()
 
     CharacterList(
