@@ -34,6 +34,7 @@ fun CharactersListScreen(viewModel: ListViewModel = hiltViewModel()) {
         clearDB = {
             scope.launch(Dispatchers.IO) {
                 viewModel.clearDB()
+                viewModel.loadMore(0)
             }
         },
         favorite = {
