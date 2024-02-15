@@ -29,12 +29,12 @@ import com.kc.marvel_kc_sp.ui.components.AnimatedImage
 import com.kc.marvel_kc_sp.utils.CharacterMocks
 
 @Composable
-fun CharacterDetailScreen(viewModel: DetailViewModel = hiltViewModel()) {
+fun CharacterDetailScreen(id: Int, viewModel: DetailViewModel = hiltViewModel()) {
     val details by viewModel.detailsFlow.collectAsState()
     //val series by viewModel.seriesFlow.collectAsState()
     val scope = rememberCoroutineScope()
 
-    viewModel.getDetailsFlow(1009146)
+    viewModel.getDetailsFlow(id)
 
     DetailList(details)
 

@@ -8,7 +8,7 @@ object CharacterMocks {
         ListCharacterUI(
             it,
             "${randomString(20)} $it",
-            "Description $it",
+            "Description: ${randomString(2000)}",
             "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/527bb7b37ff55/landscape_incredible.jpg",
             it % 3 == 0,
             it,

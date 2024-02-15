@@ -1,6 +1,5 @@
 package com.kc.marvel_kc_sp.ui.list
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -31,7 +30,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @Composable
-fun CharactersListScreen(viewModel: ListViewModel = hiltViewModel()) {
+fun CharactersListScreen(navigateToDetail: (id: Int) -> Unit, viewModel: ListViewModel = hiltViewModel()) {
     val characters by viewModel.roomFlow.collectAsState()
     val favorites by viewModel.favFlow.collectAsState()
     val scope = rememberCoroutineScope()
@@ -51,9 +50,7 @@ fun CharactersListScreen(viewModel: ListViewModel = hiltViewModel()) {
                 viewModel.favorite(it)
             }
         },
-        navigateToDetail = {
-            Log.d("SDAR", "id: $it")
-        }
+        navigateToDetail = navigateToDetail
     ) {
         viewModel.loadMore(characters.last().page)
     }
