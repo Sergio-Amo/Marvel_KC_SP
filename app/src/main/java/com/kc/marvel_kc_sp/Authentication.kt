@@ -4,12 +4,14 @@ import java.security.MessageDigest
 
 object Authentication {
 
-    private const val privateKey: String = "ENTER_PRIVATE_KEY_HERE"
     private const val publicKey: String = "ENTER_PUBLIC_KEY_HERE"
-    val authenticationParams: String get() {
-        val timeStamp = System.currentTimeMillis()
+    private const val privateKey: String = "ENTER_PRIVATE_KEY_HERE"
+
+    val authenticationParams: AuthQueryParams get() {
+        val timeStamp = System.currentTimeMillis().toString()
         val hash = stringToMd5("$timeStamp$privateKey$publicKey")
-        return "apikey=$publicKey&ts=$timeStamp&hash=$hash"
+        return AuthQueryParams(publicKey, timeStamp, hash)
+        //"apikey=$publicKey&ts=$timeStamp&hash=$hash"
     }
 
     @OptIn(ExperimentalStdlibApi::class)
@@ -20,3 +22,9 @@ object Authentication {
     }
 
 }
+
+data class AuthQueryParams (
+    val apikey: String,
+    val timeStamp: String,
+    val hash: String,
+)
