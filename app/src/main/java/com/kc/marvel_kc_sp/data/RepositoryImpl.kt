@@ -16,16 +16,6 @@ class RepositoryImpl @Inject constructor(
     private val localToList: LocalToList,
 ) : RepositoryInterface {
 
-    /*override suspend fun getCharacters(page: Int): Flow<List<ListCharacterUI>> {
-        if (!localDataSource.isStorageUsed(page)) {
-            val remote = networkDataSource.getCharacters(page).results
-            localDataSource.saveCharacters(
-                remoteToLocal.map(remote, page)
-            )
-        }
-        return localDataSource.getCharacters(page).map { localToList.map(it) }
-    }*/
-
     override suspend fun loadMore(page: Int) {
         if (!localDataSource.isStorageUsed(page)) {
             val remote = networkDataSource.getCharacters(page).results

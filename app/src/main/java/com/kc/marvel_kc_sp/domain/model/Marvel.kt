@@ -1,5 +1,6 @@
 package com.kc.marvel_kc_sp.domain.model
 
+/*
 data class Marvel (
     val code: Int, // K
     val data: Data //K
@@ -7,10 +8,12 @@ data class Marvel (
 
 data class Data (
     // Might be useful at some point
+*/
 /*    val offset: Int, //FROM
     val limit: Int,  //TO
     val total: Int,  //TOTAL
-    val count: Int,  //RETURNED*/
+    val count: Int,  //RETURNED*//*
+
     val results: List<MarvelCharacter> // ListOfCharacters
 )
 
@@ -27,3 +30,4 @@ data class Thumbnail (
     val path: String,
     val extension: String,
 )
+*/
