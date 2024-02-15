@@ -87,6 +87,7 @@ fun CharacterList(
                     item {
                         LazyRowFavCharacters(
                             characters = favorites,
+                            preview = preview,
                             modifier = Modifier
                                 .fillWidthOfParent(8.dp)
                                 .padding(padding)
