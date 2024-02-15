@@ -4,8 +4,10 @@ import com.kc.marvel_kc_sp.data.local.LocalDataSourceInterface
 import com.kc.marvel_kc_sp.data.mappers.LocalToList
 import com.kc.marvel_kc_sp.data.mappers.RemoteToListCharacterUI
 import com.kc.marvel_kc_sp.data.mappers.RemoteToLocal
+import com.kc.marvel_kc_sp.data.mappers.SeriesRemoteToUI
 import com.kc.marvel_kc_sp.data.network.NetworkDataSourceInterface
 import com.kc.marvel_kc_sp.domain.model.ListCharacterUI
+import com.kc.marvel_kc_sp.domain.model.SeriesUI
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -16,6 +18,7 @@ class RepositoryImpl @Inject constructor(
     private val remoteToLocal: RemoteToLocal,
     private val localToList: LocalToList,
     private val remoteToListCharacterUI: RemoteToListCharacterUI,
+    private val seriesRemoteToUI: SeriesRemoteToUI,
 ) : RepositoryInterface {
 
     override suspend fun loadMore(page: Int) {
@@ -52,6 +55,12 @@ class RepositoryImpl @Inject constructor(
     override suspend fun getDetailsFlow(id: Int): Flow<ListCharacterUI> {
         return networkDataSource.getDetails(id).map {
             remoteToListCharacterUI.single(it, -1)
+        }
+    }
+
+    override suspend fun getSeriesFlow(id: Int): Flow<List<SeriesUI>> {
+        return networkDataSource.getSeries(id).map {
+            seriesRemoteToUI.map(it)
         }
     }
 }
