@@ -20,6 +20,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -36,17 +37,19 @@ fun MarvelBar(clearDB: () -> Unit, modifier: Modifier = Modifier) {
                 fontFamily = marvel,
                 color = Color.White,
                 fontSize = 36.sp,
-            ),modifier = Modifier.padding(0.dp,6.dp,0.dp,0.dp)
+            ), modifier = Modifier.padding(0.dp, 6.dp, 0.dp, 0.dp)
         )
     }, actions = {
         IconButton(onClick = { openMenu = true }) {
-            Icon(Icons.Filled.MoreVert, contentDescription = "Localized description", tint = Color.White)
+            Icon(Icons.Filled.MoreVert, contentDescription = "Open menu", tint = Color.White)
         }
         DropdownMenu(expanded = openMenu, onDismissRequest = { openMenu = false }) {
             DropdownMenuItem(text = { Text("Clear saved data") }, onClick = {
                 clearDB()
                 openMenu = false
-            })
+            },
+                modifier = Modifier.testTag("clearDbEntry")
+            )
         }
 
     }, colors = TopAppBarDefaults.centerAlignedTopAppBarColors(MarvelRed)

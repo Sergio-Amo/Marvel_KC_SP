@@ -22,6 +22,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kc.marvel_kc_sp.domain.model.ListCharacterUI
@@ -43,6 +44,7 @@ fun CharacterListItem(
             //16:9 as the images requested
             .aspectRatio(1.77777777778f)
             .clickable(onClick = { navigateToDetail(character.id) })
+            .testTag("clickableCharacter")
     ) {
         Box() {
             AnimatedImage(

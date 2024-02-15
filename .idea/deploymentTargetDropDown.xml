@@ -2,23 +2,10 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="LazyRowFavCharacters_Preview">
-        <State>
-          <targetSelectedWithDropDown>
-            <Target>
-              <type value="QUICK_BOOT_TARGET" />
-              <deviceKey>
-                <Key>
-                  <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="$USER_HOME$/.android/avd/Pixel_3a_API_34.avd" />
-                </Key>
-              </deviceKey>
-            </Target>
-          </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-02-15T01:36:18.989786819Z" />
-        </State>
+      <entry key="Tests in 'com'">
+        <State />
       </entry>
-      <entry key="LoadingAnimation_Preview">
+      <entry key="WHENnavigationClickedTHENnavigateTrue()">
         <State />
       </entry>
       <entry key="app">
