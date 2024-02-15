@@ -1,6 +1,7 @@
 package com.kc.marvel_kc_sp.ui.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
@@ -31,6 +32,7 @@ import com.kc.marvel_kc_sp.utils.CharacterMocks
 fun CharacterListItem(
     character: ListCharacterUI,
     preview: Boolean = false,
+    navigateToDetail: (id: Int) -> Unit,
     modifier: Modifier = Modifier,
     favorite: (id: Int) -> Unit,
 ) {
@@ -40,6 +42,7 @@ fun CharacterListItem(
             .fillMaxWidth()
             //16:9 as the images requested
             .aspectRatio(1.77777777778f)
+            .clickable(onClick = { navigateToDetail(character.id) })
     ) {
         Box() {
             AnimatedImage(
@@ -87,5 +90,5 @@ fun CharacterListItem(
 @Preview
 @Composable
 private fun CharacterListItem_Preview() {
-    CharacterListItem(CharacterMocks.generateCharactersUI(1).first(), preview = true) {}
+    CharacterListItem(CharacterMocks.generateCharactersUI(1).first(), preview = true, {}) {}
 }

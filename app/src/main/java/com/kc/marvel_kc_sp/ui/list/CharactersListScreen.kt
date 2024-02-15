@@ -1,5 +1,6 @@
 package com.kc.marvel_kc_sp.ui.list
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -49,6 +50,9 @@ fun CharactersListScreen(viewModel: ListViewModel = hiltViewModel()) {
             scope.launch(Dispatchers.IO) {
                 viewModel.favorite(it)
             }
+        },
+        navigateToDetail = {
+            Log.d("SDAR", "id: $it")
         }
     ) {
         viewModel.loadMore(characters.last().page)
@@ -64,6 +68,7 @@ fun CharacterList(
     modifier: Modifier = Modifier,
     clearDB: () -> Unit,
     favorite: (id: Int) -> Unit,
+    navigateToDetail: (id: Int) -> Unit,
     loadNextPage: () -> Unit,
 ) {
 
@@ -102,6 +107,9 @@ fun CharacterList(
                     CharacterListItem(
                         character = characters[idx],
                         preview = preview,
+                        navigateToDetail = {
+                            navigateToDetail(it)
+                        },
                     ) { id ->
                         favorite(id)
                     }
@@ -124,5 +132,6 @@ private fun CharacterList_Preview() {
         totalItems = 12,
         clearDB = {},
         favorite = {},
+        navigateToDetail = {},
     ) {}
 }
