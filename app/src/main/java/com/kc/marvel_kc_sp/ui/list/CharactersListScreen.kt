@@ -42,7 +42,7 @@ fun CharactersListScreen(viewModel: ListViewModel = hiltViewModel()) {
             }
         }
     ) {
-        viewModel.loadMore()
+        viewModel.loadMore(characters.last().page)
     }
 }
 

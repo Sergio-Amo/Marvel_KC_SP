@@ -22,7 +22,7 @@ class ListViewModel @Inject constructor(
     private val _roomFlow: MutableStateFlow<List<ListCharacterUI>> = MutableStateFlow(emptyList())
     val roomFlow: StateFlow<List<ListCharacterUI>> = _roomFlow.asStateFlow()
 
-    private var page: Int = 1
+    //private var page: Int = 1
 
     init {
         getFlow()
@@ -36,10 +36,9 @@ class ListViewModel @Inject constructor(
         }
     }
 
-    fun loadMore() {
-        page++
+    fun loadMore(page: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.loadMore(page)
+            repository.loadMore(page+1)
         }
     }
 
