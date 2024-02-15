@@ -14,7 +14,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -25,25 +24,26 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.kc.marvel_kc_sp.domain.model.ListCharacterUI
+import com.kc.marvel_kc_sp.domain.model.SeriesUI
 import com.kc.marvel_kc_sp.ui.components.AnimatedImage
-import com.kc.marvel_kc_sp.utils.CharacterMocks
+import com.kc.marvel_kc_sp.ui.components.LazyRowSeries
+import com.kc.marvel_kc_sp.utils.Mocks
 
 @Composable
 fun CharacterDetailScreen(id: Int, viewModel: DetailViewModel = hiltViewModel()) {
     val details by viewModel.detailsFlow.collectAsState()
-    //val series by viewModel.seriesFlow.collectAsState()
-    val scope = rememberCoroutineScope()
+    val series by viewModel.seriesFlow.collectAsState()
 
-    viewModel.getDetailsFlow(id)
+    viewModel.getFlows(id)
 
-    DetailList(details)
+    DetailList(details, series)
 
 }
 
 @Composable
 fun DetailList(
     details: ListCharacterUI,
-    //series: TODO
+    series: List<SeriesUI>,
     preview: Boolean = false,
 ) {
     Box(
@@ -88,6 +88,18 @@ fun DetailList(
                 )
 
             }
+
+            if (series.isNotEmpty()) {
+                Text(
+                    text = "Series",
+                    style = MaterialTheme.typography.titleMedium,
+                    color = Color.White,
+                    modifier = Modifier
+                        .padding(start = 8.dp, end = 8.dp, bottom = 8.dp, top = 28.dp)
+                )
+                LazyRowSeries(series = series, preview = preview)
+            }
+
             Text(
                 text = details.description,
                 fontSize = 17.sp,
@@ -102,6 +114,8 @@ fun DetailList(
 @Composable
 private fun DetailList_Preview() {
     DetailList(
-        CharacterMocks.generateCharactersUI(1).first(), preview = true
+        Mocks.generateCharactersUI(1).first(),
+        series = Mocks.generateSeriesUI(12),
+        preview = true
     )
 }
