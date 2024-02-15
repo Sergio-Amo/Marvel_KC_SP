@@ -19,7 +19,10 @@ class NetworkDataSourceImpl @Inject constructor(private val api: MarvelApi) :
         return flowOf(api.getDetails(id).data.results.first())
     }
 
-    override suspend fun getSeries(id: Int): Flow<List<SeriesRemote>> {
-        return flowOf(api.getSeries(id).data.results)
+//    override suspend fun getSeries(id: Int): Flow<List<SeriesRemote>> {
+//        return flowOf(api.getSeries(id).data.results)
+//    }
+    override suspend fun getSeries(id: Int, page: Int): Flow<List<SeriesRemote>> {
+        return flowOf(api.getSeries(id, limit, limit * (page - 1)).data.results)
     }
 }

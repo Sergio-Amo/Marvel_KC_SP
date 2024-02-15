@@ -58,9 +58,9 @@ class RepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getSeriesFlow(id: Int): Flow<List<SeriesUI>> {
-        return networkDataSource.getSeries(id).map {
-            seriesRemoteToUI.map(it)
+    override suspend fun getSeriesFlow(id: Int, page: Int): Flow<List<SeriesUI>> {
+        return networkDataSource.getSeries(id, page).map {
+            seriesRemoteToUI.map(it, page)
         }
     }
 }

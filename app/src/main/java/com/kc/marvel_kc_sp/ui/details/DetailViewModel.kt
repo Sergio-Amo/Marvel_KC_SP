@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DetailViewModel @Inject constructor(
-    private val repository: RepositoryInterface
+    private val repository: RepositoryInterface,
 ) : ViewModel() {
 
     private val _detailsFlow: MutableStateFlow<ListCharacterUI> =
@@ -33,8 +33,16 @@ class DetailViewModel @Inject constructor(
                 _detailsFlow.update { character }
             }
             // get series
-            repository.getSeriesFlow(id).collect { series ->
+            repository.getSeriesFlow(id, 1).collect { series ->
                 _seriesFlow.update { series }
+            }
+        }
+    }
+
+    fun loadMore(id: Int, page: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.getSeriesFlow(id, page).collect { series ->
+                _seriesFlow.update { it.union(series).toList() }
             }
         }
     }
