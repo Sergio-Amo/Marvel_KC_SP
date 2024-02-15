@@ -34,7 +34,7 @@ private sealed class Screen(
 ) {
     fun createRoute(root: RootScreen) = "${root.route}/$route"
 
-    data object Discover : Screen("list")
+    data object CharacterListScreen : Screen("list")
 
     data object CharacterDetails : Screen("details/{characterId}") {
         fun createRoute(root: RootScreen, characterId: Long): String {

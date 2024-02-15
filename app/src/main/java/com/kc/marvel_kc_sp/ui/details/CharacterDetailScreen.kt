@@ -34,6 +34,8 @@ fun CharacterDetailScreen(viewModel: DetailViewModel = hiltViewModel()) {
     //val series by viewModel.seriesFlow.collectAsState()
     val scope = rememberCoroutineScope()
 
+    viewModel.getDetailsFlow(1009146)
+
     DetailList(details)
 
 }

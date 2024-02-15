@@ -2,6 +2,7 @@ package com.kc.marvel_kc_sp.data
 
 import com.kc.marvel_kc_sp.data.local.LocalDataSourceInterface
 import com.kc.marvel_kc_sp.data.mappers.LocalToList
+import com.kc.marvel_kc_sp.data.mappers.RemoteToListCharacterUI
 import com.kc.marvel_kc_sp.data.mappers.RemoteToLocal
 import com.kc.marvel_kc_sp.data.network.NetworkDataSourceInterface
 import com.kc.marvel_kc_sp.domain.model.ListCharacterUI
@@ -14,6 +15,7 @@ class RepositoryImpl @Inject constructor(
     private val networkDataSource: NetworkDataSourceInterface,
     private val remoteToLocal: RemoteToLocal,
     private val localToList: LocalToList,
+    private val remoteToListCharacterUI: RemoteToListCharacterUI,
 ) : RepositoryInterface {
 
     override suspend fun loadMore(page: Int) {
@@ -45,5 +47,11 @@ class RepositoryImpl @Inject constructor(
 
     override suspend fun getFavoriteFlow(): Flow<List<ListCharacterUI>> {
         return localDataSource.getFavoriteCharacters().map { localToList.map(it) }
+    }
+
+    override suspend fun getDetailsFlow(id: Int): Flow<ListCharacterUI> {
+        return networkDataSource.getDetails(id).map {
+            remoteToListCharacterUI.single(it, -1)
+        }
     }
 }

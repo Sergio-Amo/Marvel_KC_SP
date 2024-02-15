@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.kc.marvel_kc_sp.ui.details.CharacterDetailScreen
 import com.kc.marvel_kc_sp.ui.list.CharactersListScreen
 import com.kc.marvel_kc_sp.ui.theme.Marvel_KC_SPTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,12 +26,20 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+
+
                     val navController = rememberNavController()
                     NavHost(navController = navController, startDestination = "characterslist" ){
                         composable("characterslist"){
                             CharactersListScreen()
                         }
+
+                        composable("characterdetail"){
+                            CharacterDetailScreen()
+                        }
                     }
+
+
                 }
             }
         }
