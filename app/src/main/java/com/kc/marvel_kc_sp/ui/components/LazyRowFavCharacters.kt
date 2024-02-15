@@ -18,6 +18,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -36,7 +37,12 @@ fun LazyRowFavCharacters(
         state = state,
         horizontalArrangement = Arrangement.spacedBy(12.dp),
         modifier = modifier
-            .background(Color.Black)
+            .background(
+                Brush.verticalGradient(
+                    0F to Color.Black.copy(alpha = 1F),
+                    1F to Color.Black.copy(alpha = 0.88F)
+                )
+            )
             .fillMaxWidth()
             .padding(8.dp)
     ) {
@@ -58,7 +64,7 @@ fun CharacterPortraitItem(
     preview: Boolean = false,
     modifier: Modifier = Modifier,
 ) {
-    Column(
+    Column( verticalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier
             //As the images requested
             .width(96.dp)
@@ -86,6 +92,8 @@ fun CharacterPortraitItem(
             text = character.name,
             color = Color.White,
             fontSize = 13.sp,
+            minLines = 2,
+            maxLines = 2,
             modifier = Modifier.padding(0.dp, 8.dp, 0.dp, 8.dp)
         )
     }

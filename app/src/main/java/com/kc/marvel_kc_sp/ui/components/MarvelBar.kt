@@ -2,6 +2,7 @@
 
 package com.kc.marvel_kc_sp.ui.components
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -21,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kc.marvel_kc_sp.ui.theme.MarvelRed
 import com.kc.marvel_kc_sp.ui.theme.marvel
@@ -33,8 +35,8 @@ fun MarvelBar(clearDB: () -> Unit, modifier: Modifier = Modifier) {
             text = "MARVEL", style = TextStyle(
                 fontFamily = marvel,
                 color = Color.White,
-                fontSize = 36.sp
-            )
+                fontSize = 36.sp,
+            ),modifier = Modifier.padding(0.dp,6.dp,0.dp,0.dp)
         )
     }, actions = {
         IconButton(onClick = { openMenu = true }) {
