@@ -32,7 +32,7 @@ fun CharacterListItem(
     character: ListCharacterUI,
     preview: Boolean = false,
     modifier: Modifier = Modifier,
-    favorite: (id: Int) -> Unit
+    favorite: (id: Int) -> Unit,
 ) {
     Card(
         elevation = CardDefaults.cardElevation(5.dp),
@@ -87,5 +87,5 @@ fun CharacterListItem(
 @Preview
 @Composable
 private fun CharacterListItem_Preview() {
-    CharacterListItem(CharacterMocks.generateCharactersUI(1).first(), preview = true){}
+    CharacterListItem(CharacterMocks.generateCharactersUI(1).first(), preview = true) {}
 }

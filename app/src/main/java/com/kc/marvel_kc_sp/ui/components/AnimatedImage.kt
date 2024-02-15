@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -30,6 +31,7 @@ fun AnimatedImage(
     image: String,
     preview: Boolean = false,
     modifier: Modifier = Modifier,
+    imageShape: Shape = CardDefaults.shape
 ) {
     val painter = rememberAsyncImagePainter(image)
     val state = painter.state
@@ -59,7 +61,7 @@ fun AnimatedImage(
                 .scale(.8f + (.2f * transition))
                 .graphicsLayer(rotationX = (1f - transition) * 5f)
                 .alpha(min(1f, transition / .2f))
-                .clip(CardDefaults.shape)
+                .clip(imageShape)
         )
     }
 }

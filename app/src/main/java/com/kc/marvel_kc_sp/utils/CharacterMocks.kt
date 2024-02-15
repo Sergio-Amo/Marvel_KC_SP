@@ -15,8 +15,8 @@ object CharacterMocks {
         )
     }
 
-    private fun randomString(size: Int): String {
-        val permittedChars: List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9')
+    fun randomString(size: Int): String {
+        val permittedChars: List<Char> = ('a'..'z') + ('A'..'Z') + ('0'..'9') + (' ')
         return (1..Random.nextInt(5, size+1)).map {
             Random.nextInt(0, permittedChars.size).let { permittedChars[it] }
         }.joinToString("")
