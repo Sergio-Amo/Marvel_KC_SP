@@ -93,7 +93,7 @@ fun CharacterList(
                             modifier = Modifier
                                 .fillWidthOfParent(8.dp)
                                 .padding(padding)
-                        )
+                        ){ navigateToDetail(it) }
                     }
                 } else {
                     item {

@@ -1,6 +1,7 @@
 package com.kc.marvel_kc_sp.ui.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
@@ -31,6 +32,7 @@ fun LazyRowFavCharacters(
     characters: List<ListCharacterUI>,
     preview: Boolean = false,
     modifier: Modifier = Modifier,
+    navigateToDetail: (id: Int) -> Unit,
 ) {
     val state = rememberLazyListState()
     LazyRow(
@@ -47,7 +49,7 @@ fun LazyRowFavCharacters(
             .padding(8.dp)
     ) {
         items(characters) {
-            CharacterPortraitItem(it, preview = preview)
+            CharacterPortraitItem(it, preview = preview, navigateToDetail = navigateToDetail)
         }
     }
 }
@@ -55,7 +57,7 @@ fun LazyRowFavCharacters(
 @Preview(showSystemUi = true)
 @Composable
 private fun LazyRowFavCharacters_Preview() {
-    LazyRowFavCharacters(Mocks.generateCharactersUI(8), true)
+    LazyRowFavCharacters(Mocks.generateCharactersUI(8), true){}
 }
 
 @Composable
@@ -63,12 +65,14 @@ fun CharacterPortraitItem(
     character: ListCharacterUI,
     preview: Boolean = false,
     modifier: Modifier = Modifier,
+    navigateToDetail: (id: Int) -> Unit,
 ) {
     Column( verticalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier
             //As the images requested
             .width(96.dp)
             .height(200.dp)
+            .clickable { navigateToDetail(character.id) }
     ) {
 
         Card(
@@ -102,5 +106,5 @@ fun CharacterPortraitItem(
 @Preview
 @Composable
 private fun CharacterPortraitItem_Preview() {
-    CharacterPortraitItem(Mocks.generateCharactersUI(1).first(), preview = true)
+    CharacterPortraitItem(Mocks.generateCharactersUI(1).first(), preview = true){}
 }
