@@ -8,7 +8,7 @@ import java.net.URL
 class UrlProtocolUpgradeKtTest {
 
 
-    // I'm in a hurry, sorry for not doing more unit tests
+    // I'm in a hurry, sorry for not doing more unit tests, there's a lot more on the previous assignment
     @Test
     fun `GIVEN http url THEN https url`() {
 
