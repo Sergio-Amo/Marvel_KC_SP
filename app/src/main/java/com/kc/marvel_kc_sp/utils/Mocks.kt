@@ -27,7 +27,8 @@ object Mocks {
         SeriesUI(
             it,
             "${randomString(20)} $it",
-            "https://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available/portrait_incredible.jpg"
+            "https://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available/portrait_incredible.jpg",
+            (it - 1) / 20 + 1
         )
     }
 }

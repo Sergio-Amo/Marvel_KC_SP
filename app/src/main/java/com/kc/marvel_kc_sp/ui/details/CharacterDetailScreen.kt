@@ -36,7 +36,9 @@ fun CharacterDetailScreen(id: Int, viewModel: DetailViewModel = hiltViewModel())
 
     viewModel.getFlows(id)
 
-    DetailList(details, series)
+    DetailList(details, series){
+        viewModel.loadMore(details.id, series.last().page + 1)
+    }
 
 }
 
@@ -45,6 +47,7 @@ fun DetailList(
     details: ListCharacterUI,
     series: List<SeriesUI>,
     preview: Boolean = false,
+    loadMoreSeries: () -> Unit
 ) {
     Box(
         Modifier
@@ -97,7 +100,9 @@ fun DetailList(
                     modifier = Modifier
                         .padding(start = 8.dp, end = 8.dp, bottom = 8.dp, top = 28.dp)
                 )
-                LazyRowSeries(series = series, preview = preview)
+                LazyRowSeries(series = series, preview = preview){
+                    loadMoreSeries()
+                }
             }
 
             Text(
@@ -117,5 +122,5 @@ private fun DetailList_Preview() {
         Mocks.generateCharactersUI(1).first(),
         series = Mocks.generateSeriesUI(12),
         preview = true
-    )
+    ){}
 }

@@ -7,6 +7,10 @@ data class SeriesRemoteResponse(
 )
 
 data class SeriesData(
+    @Json(name = "offset") val offset: Int, //FROM
+    @Json(name = "limit") val limit: Int,  //TO
+    @Json(name = "total") val total: Int,  //TOTAL
+    @Json(name = "count") val count: Int,  //AMOUNT RETURNED
     @Json(name = "results") val results: List<SeriesRemote>,
 )
 

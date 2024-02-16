@@ -12,5 +12,6 @@ interface RepositoryInterface {
     suspend fun getFlow(): Flow<List<ListCharacterUI>>
     suspend fun getFavoriteFlow(): Flow<List<ListCharacterUI>>
     suspend fun getDetailsFlow(id: Int): Flow<ListCharacterUI>
-    suspend fun getSeriesFlow(id: Int): Flow<List<SeriesUI>>
+    //suspend fun getSeriesFlow(id: Int): Flow<List<SeriesUI>>
+    suspend fun getSeriesFlow(id: Int, page: Int): Flow<List<SeriesUI>>
 }

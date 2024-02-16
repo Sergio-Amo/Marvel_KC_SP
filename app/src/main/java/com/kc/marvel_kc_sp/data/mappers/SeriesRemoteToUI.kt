@@ -7,8 +7,8 @@ import javax.inject.Inject
 
 class SeriesRemoteToUI @Inject constructor() {
 
-    fun map(remote: List<SeriesRemote>) = remote.map {
+    fun map(remote: List<SeriesRemote>, page: Int) = remote.map {
         val url = urlUpgrade("${it.thumbnail.path}/portrait_incredible.${it.thumbnail.extension}")
-        SeriesUI(it.id, it.title, url)
+        SeriesUI(it.id, it.title, url, page)
     }
 }

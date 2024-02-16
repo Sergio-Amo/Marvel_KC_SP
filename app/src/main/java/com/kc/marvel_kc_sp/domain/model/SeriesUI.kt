@@ -4,4 +4,5 @@ data class SeriesUI(
     val id: Int,
     val title: String,
     val thumbnail: String,
+    val page: Int
 )

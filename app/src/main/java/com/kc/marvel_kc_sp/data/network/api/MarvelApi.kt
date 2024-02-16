@@ -29,6 +29,11 @@ interface MarvelApi {
 
     // /v1/public/characters/{characterId}/series
     @GET(seriesEndPoint)
-    suspend fun getSeries(@Path("characterId") id: Int): SeriesRemoteResponse
+    suspend fun getSeries(
+        @Path("characterId") id: Int,
+        @Query("limit") limit: Int? = 20,
+        @Query("offset") offset: Int? = 0,
+    ): SeriesRemoteResponse
+    //suspend fun getSeries(@Path("characterId") id: Int): SeriesRemoteResponse
 
 }

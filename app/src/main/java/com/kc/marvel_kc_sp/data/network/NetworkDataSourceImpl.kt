@@ -5,6 +5,7 @@ import com.kc.marvel_kc_sp.data.network.model.DataRemote
 import com.kc.marvel_kc_sp.data.network.model.MarvelCharacterRemote
 import com.kc.marvel_kc_sp.data.network.model.SeriesRemote
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 import javax.inject.Inject
 
@@ -19,7 +20,14 @@ class NetworkDataSourceImpl @Inject constructor(private val api: MarvelApi) :
         return flowOf(api.getDetails(id).data.results.first())
     }
 
-    override suspend fun getSeries(id: Int): Flow<List<SeriesRemote>> {
-        return flowOf(api.getSeries(id).data.results)
+    override suspend fun getSeries(id: Int, page: Int): Flow<List<SeriesRemote>> {
+        return flow {
+            var close = false
+            val series = api.getSeries(id, limit, limit * (page - 1)).data
+            if (!close) {
+                emit(series.results)
+            }
+            if (series.offset + series.count < series.total) close = true
+        }
     }
 }

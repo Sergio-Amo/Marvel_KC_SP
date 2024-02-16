@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -31,6 +30,7 @@ fun LazyRowSeries(
     series: List<SeriesUI>,
     preview: Boolean = false,
     modifier: Modifier = Modifier,
+    loadMoreSeries: () -> Unit,
 ) {
     val state = rememberLazyListState()
     LazyRow(
@@ -41,8 +41,11 @@ fun LazyRowSeries(
             .fillMaxWidth()
             .padding(8.dp)
     ) {
-        items(series) {
-            SeriesPortraitItem(it, preview = preview)
+        val size = series.size
+        items(size) { idx ->
+            SeriesPortraitItem(series[idx], preview = preview)
+            if (idx == size - 5)
+                loadMoreSeries()
         }
     }
 }
@@ -50,7 +53,7 @@ fun LazyRowSeries(
 @Preview(showSystemUi = true)
 @Composable
 private fun LazyRowSeries_Preview() {
-    LazyRowSeries(Mocks.generateSeriesUI(8), true)
+    LazyRowSeries(Mocks.generateSeriesUI(8), true){}
 }
 
 @Composable
@@ -59,7 +62,8 @@ fun SeriesPortraitItem(
     preview: Boolean = false,
     modifier: Modifier = Modifier,
 ) {
-    Column( verticalArrangement = Arrangement.SpaceBetween,
+    Column(
+        verticalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier
             //As the images requested
             .width(96.dp)
