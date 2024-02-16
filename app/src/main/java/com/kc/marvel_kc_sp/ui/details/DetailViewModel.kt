@@ -32,10 +32,7 @@ class DetailViewModel @Inject constructor(
             repository.getDetailsFlow(id).collect { character ->
                 _detailsFlow.update { character }
             }
-            // get series
-            repository.getSeriesFlow(id, 1).collect { series ->
-                _seriesFlow.update { series }
-            }
+            loadMore(id,1)
         }
     }
 
