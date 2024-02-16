@@ -13,6 +13,7 @@ class NetworkDataSourceImpl @Inject constructor(private val api: MarvelApi) :
     NetworkDataSourceInterface {
 
     private val limit = 20
+    private var seriesClose = false
     override suspend fun getCharacters(page: Int): DataRemote =
         api.getCharacters(limit, limit * (page - 1)).data
 
@@ -22,12 +23,15 @@ class NetworkDataSourceImpl @Inject constructor(private val api: MarvelApi) :
 
     override suspend fun getSeries(id: Int, page: Int): Flow<List<SeriesRemote>> {
         return flow {
-            var close = false
-            val series = api.getSeries(id, limit, limit * (page - 1)).data
-            if (!close) {
+            // If not all series retrieved
+            if (!seriesClose) {
+                // Get & emit
+                val series = api.getSeries(id, limit, limit * (page - 1)).data
                 emit(series.results)
+                // Check if all series have been retrieved
+                if (series.offset + series.count >= series.total)
+                    seriesClose = true
             }
-            if (series.offset + series.count < series.total) close = true
         }
     }
 }

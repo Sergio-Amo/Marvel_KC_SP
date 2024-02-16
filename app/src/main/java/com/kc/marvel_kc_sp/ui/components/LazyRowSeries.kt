@@ -44,7 +44,7 @@ fun LazyRowSeries(
         val size = series.size
         items(size) { idx ->
             SeriesPortraitItem(series[idx], preview = preview)
-            if (idx == size - 5)
+            if (idx == size - 7)
                 loadMoreSeries()
         }
     }
