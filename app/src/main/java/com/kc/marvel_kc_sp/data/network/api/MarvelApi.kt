@@ -8,10 +8,10 @@ import retrofit2.http.Query
 
 interface MarvelApi {
 
-    private companion object {
-        private const val base: String = "https://gateway.marvel.com/v1/public"
-        private const val charactersEndPoint: String = "$base/characters"
-        private const val seriesEndPoint: String = "$base/characters/{characterId}/series"
+    companion object {
+        const val base: String = "https://gateway.marvel.com/v1/public/"
+        private const val charactersEndPoint: String = "${base}characters"
+        private const val seriesEndPoint: String = "${base}characters/{characterId}/series"
         private const val heroLimit = 20
     }
 

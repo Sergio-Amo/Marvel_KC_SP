@@ -51,7 +51,7 @@ object NetworkDataProvider {
     fun providesRetrofit(okHttpClient: OkHttpClient, moshi: Moshi): Retrofit {
         return Retrofit.Builder()
             .client(okHttpClient)
-            .baseUrl("https://dragonball.keepcoding.education/")
+            .baseUrl(MarvelApi.base)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
     }
