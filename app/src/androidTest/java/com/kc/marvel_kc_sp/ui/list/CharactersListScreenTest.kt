@@ -31,7 +31,7 @@ class CharactersListTest {
                 preview = true,
                 totalItems = 8,
                 clearDB = {},
-                favorite = {},
+                favoriteIt = {},
                 navigateToDetail = { navigate = true },
                 loadNextPage = {}
             )
@@ -53,7 +53,7 @@ class CharactersListTest {
                 preview = true,
                 totalItems = 8,
                 clearDB = { clearClicked = true },
-                favorite = {},
+                favoriteIt = {},
                 navigateToDetail = {},
                 loadNextPage = {}
             )

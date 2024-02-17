@@ -45,7 +45,7 @@ fun CharactersListScreen(navigateToDetail: (id: Int) -> Unit, viewModel: ListVie
                 viewModel.loadMore(0)
             }
         },
-        favorite = {
+        favoriteIt = {
             scope.launch(Dispatchers.IO) {
                 viewModel.favorite(it)
             }
@@ -64,7 +64,7 @@ fun CharacterList(
     totalItems: Int,
     modifier: Modifier = Modifier,
     clearDB: () -> Unit,
-    favorite: (id: Int) -> Unit,
+    favoriteIt: (id: Int) -> Unit,
     navigateToDetail: (id: Int) -> Unit,
     loadNextPage: () -> Unit,
 ) {
@@ -90,10 +90,11 @@ fun CharacterList(
                         LazyRowFavCharacters(
                             characters = favorites,
                             preview = preview,
+                            navigateToDetail = navigateToDetail,
                             modifier = Modifier
                                 .fillWidthOfParent(8.dp)
                                 .padding(padding)
-                        ){ navigateToDetail(it) }
+                        )
                     }
                 } else {
                     item {
@@ -104,12 +105,9 @@ fun CharacterList(
                     CharacterListItem(
                         character = characters[idx],
                         preview = preview,
-                        navigateToDetail = {
-                            navigateToDetail(it)
-                        },
-                    ) { id ->
-                        favorite(id)
-                    }
+                        navigateToDetail = navigateToDetail,
+                        favorite = favoriteIt
+                    )
                     if (idx == totalItems - 5)
                         loadNextPage()
                 }
@@ -128,7 +126,7 @@ private fun CharacterList_Preview() {
         preview = true,
         totalItems = 12,
         clearDB = {},
-        favorite = {},
+        favoriteIt = {},
         navigateToDetail = {},
     ) {}
 }
