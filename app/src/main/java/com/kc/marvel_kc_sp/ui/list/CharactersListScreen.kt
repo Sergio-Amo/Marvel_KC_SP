@@ -30,7 +30,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @Composable
-fun CharactersListScreen(navigateToDetail: (id: Int) -> Unit, viewModel: ListViewModel = hiltViewModel()) {
+fun CharactersListScreen(viewModel: ListViewModel = hiltViewModel(), navigateToDetail: (id: Int) -> Unit) {
     val characters by viewModel.roomFlow.collectAsState()
     val favorites by viewModel.favFlow.collectAsState()
     val scope = rememberCoroutineScope()

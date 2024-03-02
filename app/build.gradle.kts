@@ -89,7 +89,6 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.7.7")
     // Images (Coil)
     implementation("io.coil-kt:coil-compose:2.5.0")
-
     /* TEST */
     testImplementation("junit:junit:4.13.2")
     // OkHttp3

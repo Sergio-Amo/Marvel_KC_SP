@@ -15,9 +15,9 @@ fun NavigationController() {
 
     NavHost(navController = navController, startDestination = Screen.List.route) {
         composable(Screen.List.route) {
-            CharactersListScreen(navigateToDetail = {
+            CharactersListScreen {
                 navController.navigate(Screen.Details.createRoute(it))
-            })
+            }
         }
 
         composable(
@@ -27,13 +27,12 @@ fun NavigationController() {
                 defaultValue = 1009146
             })
         ) {
-            it.arguments?.getInt("id")?.let { id ->
-                CharacterDetailScreen(id)
+            it.arguments?.getInt("id")?.let {
+                CharacterDetailScreen(it)
             }
         }
     }
 }
-
 
 internal sealed class Screen(val route: String) {
     object List : Screen("characterslist")

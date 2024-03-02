@@ -12,6 +12,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -34,12 +35,13 @@ fun CharacterDetailScreen(id: Int, viewModel: DetailViewModel = hiltViewModel())
     val details by viewModel.detailsFlow.collectAsState()
     val series by viewModel.seriesFlow.collectAsState()
 
-    viewModel.getFlows(id)
+    LaunchedEffect(id) {
+        viewModel.getFlows(id)
+    }
 
     DetailList(details, series){
         viewModel.loadMore(details.id, series.last().page + 1)
     }
-
 }
 
 @Composable
